@@ -8,7 +8,7 @@ const id = params.get("id");
 
 
 async function getProduct(){
-  const response = await fetch(`https://api.noroff.dev/api/v1/square-eyes/${id}`)
+  const response = await fetch(`https://eirikveskje.com/wp-json/wc/store/${id}`)
   const movie = await response.json()
 
   container.innerHTML = `

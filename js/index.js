@@ -1,7 +1,9 @@
 import { baseApiUrl, endpointApiUrl } from "./apiService.js";
 import { getData } from "./apiService.js";
 import { createMessage } from "./errorMessage.js";
-
+fetch('https://eirikveskje.com/wp-json/wc/store/products', {
+  mode: 'no-cors'
+})
 
 const favContainer = document.querySelector(".continue-watching__movies");
 const discoverContainer = document.querySelector(".discover .continue-watching__movies");
@@ -10,7 +12,7 @@ const posterGif = document.querySelector(".movie-gif-10")
 const apiUrl = `${baseApiUrl}${endpointApiUrl}`;
 
 async function fetchPoster () {
-  const response = await getData("https://api.noroff.dev/api/v1/square-eyes/972df6d3-b4e8-44c1-9dec-cadd3b35102e");
+  const response = await getData("https://www.eirikveskje.com/wp-json/wc/v3/products/2165?consumer_key=ck_b5877d7b70a5804f0ad7e9289848c8613753495b&consumer_secret=cs_b9042d621a1673ff92a770a2094124ab3c2148f0");
 
   poster.innerHTML = `
   <a href="../pages/product.html?id=${response.id}">
@@ -18,10 +20,10 @@ async function fetchPoster () {
    <div>
     <img
      class="movie-poster"
-     src="${response.image}"
+     src="${response.images[0].src}"
      alt="batman" />
     <div class="movie-info">
-     <p>${response.title}</p>
+     <p>${response.name}</p>
      <img class="rating" src="./assets/stars.svg" alt="rating" />
      <p>From 342 users</p>
     </div>
@@ -34,28 +36,28 @@ async function fetchPoster () {
 }
 fetchPoster()
 
-async function fetchPosterGif () {
-  const response = await getData("https://api.noroff.dev/api/v1/square-eyes/4696b9e6-ec6e-4672-a08d-3e3212a215c8");
+// async function fetchPosterGif () {
+//   const response = await getData("https://www.eirikveskje.com/wp-json/wc/v3/products/2165?consumer_key=ck_b5877d7b70a5804f0ad7e9289848c8613753495b&consumer_secret=cs_b9042d621a1673ff92a770a2094124ab3c2148f0");
 
-  posterGif.innerHTML = `
-  <a href="../pages/product.html?id=${response.id}">
-  <section class="new-release">
-  <div>
-   <img
-    class="movie-poster"
-    src="../assets/movie-pictures/giphy.gif"
-    alt="godzilla" />
-   <div class="movie-info-gif">
-    <p>${response.title}</p>
-    <p>${movie.genre} | ${movie.released} | Rating: ${movie.rating}</p>
-   </div>
-  </div>
- </section>
- </a>
-  `;
-}
-fetchPosterGif()
-console.log(posterGif);
+//   posterGif.innerHTML = `
+//   <a href="../pages/product.html?id=${response.id}">
+//   <section class="new-release">
+//   <div>
+//    <img
+//     class="movie-poster"
+//     src="../assets/movie-pictures/giphy.gif"
+//     alt="godzilla" />
+//    <div class="movie-info-gif">
+//     <p>${response.name}</p>
+//     <p>${movie.genre} | ${movie.released} | Rating: ${movie.rating}</p>
+//    </div>
+//   </div>
+//  </section>
+//  </a>
+//   `;
+// }
+// fetchPosterGif()
+// console.log(posterGif);
 
 
 async function fetchData() {
@@ -69,9 +71,9 @@ async function fetchData() {
       <a href="../pages/product.html?id=${data[i].id}">
         <div class="movies__container">
           <div>
-            <img src="${data[i].image}" alt="${data[i].title}" />
+            <img src="${data[i].images[0].src}" alt="${data[i].name}" />
           </div>
-          <p>${data[i].title}</p>
+          <p>${data[i].name}</p>
           <p>${data[i].price}$</p>
         </div>
         </a>
@@ -85,7 +87,7 @@ async function fetchData() {
       <a href="../pages/product.html?id=${data[i].id}">
         <div class="movies__container">
           <div>
-            <img src="${data[i].image}" alt="${data[i].title}" />
+            <img src="${data[i].image}" alt="${data[i].name}" />
           </div>
           <p class="title-product">${data[i].title}</p>
           <p>${data[i].price}$</p>

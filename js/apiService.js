@@ -1,5 +1,5 @@
-export const baseApiUrl = "https://api.noroff.dev/api/v1";
-export const endpointApiUrl = "/square-eyes";
+export const baseApiUrl = "https://eirikveskje.com/wp-json/wc/store";
+export const endpointApiUrl = "/products";
 
 export async function getData(url) {
   try {
