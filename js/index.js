@@ -87,9 +87,9 @@ async function fetchData() {
       <a href="../pages/product.html?id=${data[i].id}">
         <div class="movies__container">
           <div>
-            <img src="${data[i].image}" alt="${data[i].name}" />
+            <img src="${data[i].images[0].src}" alt="${data[i].name}" />
           </div>
-          <p class="title-product">${data[i].title}</p>
+          <p class="title-product">${data[i].name}</p>
           <p>${data[i].price}$</p>
         </div>
         </a>

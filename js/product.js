@@ -8,18 +8,18 @@ const id = params.get("id");
 
 
 async function getProduct(){
-  const response = await fetch(`https://eirikveskje.com/wp-json/wc/store/${id}`)
+  const response = await fetch(`https://www.eirikveskje.com/wp-json/wc/v3/products/${productID}?consumer_key=ck_b5877d7b70a5804f0ad7e9289848c8613753495b&consumer_secret=cs_b9042d621a1673ff92a770a2094124ab3c2148f0`)
   const movie = await response.json()
 
   container.innerHTML = `
   <div class="product-wrapper">
   <div class="product-card">
    <div class="product-card-image">
-   <img src="${movie.image}" class="filmcover-product" alt="Cover image of the movie" />
+   <img src="${movie.images[0].src}" class="filmcover-product" alt="Cover image of the movie" />
    </div>
    <div class="product-card-content">
     <div class="product-content-container">
-     <h1 class="film-title-product">${movie.title}</h1>
+     <h1 class="film-title-product">${movie.name}</h1>
      <p class="film-category">${movie.genre} | ${movie.released} | Rating: ${movie.rating} | 4k</p>
      <p>
       ${movie.description}
